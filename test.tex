@@ -31,9 +31,119 @@
 \usepackage{pxjahyper} % hyperrefの日本語文字化け対策
 \begin{document}
 
-\title{テスト文書}
-\author{一ノ瀬}
+\title{幾何学}
+\author{小武龍斗 22B20817}
 \date{\today}
 \maketitle
+
+\section{問題1}
+\noindent
+問1. $V, W$ を (可換) 体 $K$ 上の有限次元ベクトル空間とし, $\varphi: V \longrightarrow W$ を線型写像とする. $\{e_1, \dots, e_n\}$ を $V$ の基底とし, $\{e^{*1}, \dots, e^{*n}\}$ をその双対基底とする. また, $\{f_1, \dots, f_m\}$ を $W$ の基底とし, $\{f^{*1}, \dots, f^{*m}\}$ をその双対基底とする.
+
+\vspace{0.5em}
+
+このとき, もし基底 $\{e_1, \dots, e_n\}, \{f_1, \dots, f_m\}$ に関する $\varphi$ の表現行列が $A$ であれば, 基底 $\{f^{*1}, \dots, f^{*m}\}, \{e^{*1}, \dots, e^{*n}\}$ に関する ${}^t\varphi$ の表現行列は ${}^tA$ になることを示せ. 但し ${}^t\varphi$ は次式で定義される線型写像 ${}^t\varphi: W^* \longrightarrow V^*$ である.
+\[
+  {}^t\varphi(g) = g \circ \varphi \quad \text{for } g \in W^*.
+\]
+\subsection{解答}
+まず、表現行列の定義を考える。
+\begin{align}
+    \varphi(e_j) = \sum_{i=1}^{m} A_{ij} f_i
+\end{align}
+行列形式で書くと、
+\begin{align}
+    \begin{pmatrix}
+        \varphi(e_1) & \varphi(e_2) & \cdots & \varphi(e_n)
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        f_1 & f_2 & \cdots & f_m
+    \end{pmatrix}
+    A
+\end{align}
+次に、${}^t\varphi$ の表現行列を $B$ とする。
+\begin{align}
+    {}^t\varphi(f^{*i}) = \sum_{j=1}^{n} B_{ji} e^{*j}
+\end{align}
+行列形式で書くと、
+\begin{align}
+    \begin{pmatrix}
+        {}^t\varphi(f^{*1}) & {}^t\varphi(f^{*2}) & \cdots & {}^t\varphi(f^{*m})
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        e^{*1} & e^{*2} & \cdots & e^{*n}
+    \end{pmatrix}
+    B\label{4}
+\end{align}
+ここで、${}^t\varphi(f^{*i})$ を定義
+
+に従って書き換える。
+\begin{align}
+    {}^t\varphi(f^{*i})(e_j) &= f^{*i}(\varphi(e_j)) \\
+    &= f^{*i}\left(\sum_{k=1}^{m} A_{kj} f_k\right) \\
+    &= \sum_{k=1}^{m} A_{kj} f^{*i}(f_k) \\
+    &= A_{ij}
+\end{align}
+一行目は$^t \varphi=g\circ \varphi$という表式を用いた。3行目は$f^{*i}(f_k)=\delta_k^i$を用いた。
+\\したがって(\ref{4})式と見比べることにより、$B_{ji} = A_{ij}$ であり、行
+列を入れ替えたもの、すなわち $B = {}^tA$ であることが示された。
+
+\section{問題2}
+\noindent
+問2. $f: \mathbf{R}^2 \setminus \{(0,0)\} \longrightarrow \mathbf{R}^2 \setminus \{(0,0)\}$ を次式で定義される $C^\infty$ 級写像とする.
+\[
+  f(x, y) = (x^2 - y^2, 2xy).
+\]
+(1) $f_* \left( \frac{\partial}{\partial x} \right), f_* \left( \frac{\partial}{\partial y} \right)$ を計算せよ.
+
+\vspace{1em}
+
+(2) $\mathbf{R}^2 \setminus \{(0,0)\}$ 上の 1 次微分形式
+\[
+  \alpha = -\frac{y}{x^2 + y^2}dx + \frac{x}{x^2 + y^2}dy
+\]
+の $f$ による引き戻し $f^*\alpha$ を求めよ.
+\subsection{解答}
+(1) $f_*$ の定義に従って計算する。
+\begin{align}
+    f_*\left(\pdv{x}\right) &= \pdv{f^1}{x}\pdv{x^1} + \pdv{f^2}{x}\pdv{x^2} \\
+    &= 2x\pdv{x^1} + 2y\pdv{x^2}\\
+    f_*\left(\pdv{y}\right) &= \pdv{f^1}{y}\pdv{x^1} + \pdv{f^2}{y}\pdv{x^22} \\
+    &= -2y\pdv{x^1} + 2x\pdv{x^2}
+\end{align}
+(2) $f^*$ の定義に従って計算する。
+\begin{align}
+    f^*\alpha &= -\frac{f^2(x,y)}{(f^1(x,y))^2 + (f^2(x,y))^2} d(f^1(x,y)) + \frac{f^1(x,y)}{(f^1(x,y))^2 + (f^2(x,y))^2} d(f^2(x,y)) \\
+    &= -\frac{2xy}{(x^2 - y^2)^2 + (2xy)^2} d(x^2 - y^2) + \frac{x^2 - y^2}{(x^2 - y^2)^2 + (2xy)^2} d(2xy) \\
+    &= -\frac{2xy}{(x^2 + y^2)^2} (2x dx - 2y dy) + \frac{x^2 - y^2}{(x^2 + y^2)^2} (2y dx + 2x dy) \\
+    &= \left(-\frac{4x^2y}{(x^2 + y^2)^2} + \frac{2y(x^2 - y^2)}{(x^2 + y^2)^2}\right) dx + \left(\frac{4xy^2}{(x^2 + y^2)^2} + \frac{2x(x^2 - y^2)}{(x^2 + y^2)^2}\right) dy \\
+    &= \frac{-2y(x^2+y^2)}{(x^2+y^2)^2} \cdot dx + \frac{2x(x^2+y^2)}{(x^2+y^2)^2}\cdot dy\\
+    &= -\frac{2y}{(x^2+y^2)} dx + \frac{2x}{(x^2+y^2)} dy
+\end{align}
+よって示される。\\
+また、他のやり方でも示してみる。
+\begin{align}
+  f^*\alpha \qty(\pdv{x})&=\alpha\qty(f_*\qty(\pdv{x}))\\
+  &= \alpha\qty(2x\pdv{x^1} + 2y\pdv{x^2})\\
+  &= -\frac{x^2}{(x^1)^2+(x^2)^2}2x + \frac{x^1}{(x^1)^2+(x^2)^2}2y\\
+  &= -\frac{2xy}{(x^2 - y^2)^2 + (2xy)^2} (2x) + \frac{x^2 - y^2}{(x^2 - y^2)^2 + (2xy)^2} (2y)\\
+  &= -\frac{2y(x^2+y^2)}{(x^2+y^2)^2}\\
+  &= -\frac{2y}{(x^2+y^2)}
+\end{align}
+ で$dx$の係数が示される。
+同様に、
+
+\begin{align}
+    f^*\alpha \qty(\pdv{y})&=\alpha\qty(f_*\qty(\pdv{y}))\\
+    &= \alpha\qty(-2y\pdv{x^1} + 2x\pdv{x^2})\\
+    &= -\frac{x^2}{(x^1)^2+(x^2)^2}(-2y) + \frac{x^1}{(x^1)^2+(x^2)^2}(2x)\\
+    &=-\frac{2xy}{(x^2 - y^2)^2 + (2xy)^2} (-2y) + \frac{x^2 - y^2}{(x^2 - y^2)^2 + (2xy)^2} (2x)\\
+    &=\frac{2x(x^2+y^2)}{(x^2+y^2)^2}\\
+    &=\frac{2x}{(x^2+y^2)}
+\end{align}
+で$dy$の係数が示される。
+つまり、$f^*\alpha = -\frac{2y}{(x^2+y^2)} dx + \frac{2x}{(x^2+y^2)} dy$ である。
 
 \end{document}
