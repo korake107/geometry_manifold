@@ -145,6 +145,51 @@
 \end{align}
 で$dy$の係数が示される。
 つまり、$f^*\alpha = -\frac{2y}{(x^2+y^2)} dx + \frac{2x}{(x^2+y^2)} dy$ である。
+\section{問題3}問3. $\mathbf{R}^4$ の座標を $(x, y, z, t)$ とし,
+\begin{align*}
+E_x &= E_x(x, y, z, t), & E_y &= E_y(x, y, z, t), & E_z &= E_z(x, y, z, t) \\
+B_x &= B_x(x, y, z, t), & B_y &= B_y(x, y, z, t), & B_z &= B_z(x, y, z, t)
+\end{align*}
+を $\mathbf{R}^4$ 上の $C^{\infty}$ 級関数として,
+$$
+F = E_x dx \wedge dt + E_y dy \wedge dt + E_z dz \wedge dt + B_x dy \wedge dz + B_y dz \wedge dx + B_z dx \wedge dy \in \Omega^2(\mathbf{R}^4)
+$$
+とする.
+
+(1) $dF$ を計算せよ. また $dF=0$ からどのような式が出てくるか?
+
+(2) 写像 $* : \Omega^2(\mathbf{R}^4) \to \Omega^2(\mathbf{R}^4)$ を次のように定義する.
+\begin{gather*}
+*(dx \wedge dt) = dy \wedge dz, \quad *(dy \wedge dt) = dz \wedge dx, \quad *(dz \wedge dt) = dx \wedge dy, \\
+*(dx \wedge dy) = -dz \wedge dt, \quad *(dy \wedge dz) = -dx \wedge dt, \quad *(dz \wedge dx) = -dy \wedge dt
+\end{gather*}
+とし, これを $C^{\infty}(\mathbf{R}^4)$-linear に $\Omega^2(\mathbf{R}^4) \to \Omega^2(\mathbf{R}^4)$ に拡張する.
+
+例えば
+$$
+(f(x, y, z, t) dx \wedge dy + g(x, y, z, t) dz \wedge dt) = f(x, y, z, t) \{*(dx \wedge dy)\} + g(x, y, z, t) \{*(dz \wedge dt)\}.
+$$
+
+といった具合である。
+
+このとき, $d(*F)$ を計算せよ. また, $d(*F)=0$ からどのような式が出てくるか?
+\subsection{解答}
+(1) $dF$ を計算する。
+\begin{align}
+    dF &= d(E_x dx \wedge dt) + d(E_y dy \wedge dt) + d(E_z dz \wedge dt) \\
+    & \ \ + d(B_x dy \wedge dz) + d(B_y dz \wedge dx) + d(B_z dx \wedge dy) \\
+    &= \left(\pdv{E_x}{y} dy + \pdv{E_x}{z} dz \right) \wedge dx \wedge dt 
+     + \left(\pdv{E_y}{x} dx + \pdv{E_y}{z} dz \right) \wedge dy \wedge dt \\
+    & \ \ + \left(\pdv{E_z}{x} dx + \pdv{E_z}{y} dy\right) \wedge dz \wedge dt 
+    + \left(\pdv{B_x}{x} dx + \pdv{B_x}{t} dt\right) \wedge dy \wedge dz \\
+    & \ \ + \left(\pdv{B_y}{x} dx  + \pdv{B_y}{t} dt \right) \wedge dz \wedge dx 
+     + \left( \pdv{B_z}{z} dz + \pdv{B_z}{t} dt\right) \wedge dx \wedge dy\\
+    &=\left(\pdv{B_z}{t}-\pdv{E_x}{y}+\pdv{E_y}{x}\right) dt\wedge dx\wedge dy+\left(\pdv{B_y}{t}+\pdv{E_x}{z}-\pdv{E_z}{x}\right) dt\wedge dz \wedge dx +\left(\pdv{E_y}{z}-\pdv{E_z}{y}\right) dz
+\end{align}
+
+
+
+
 
 \section{問題11}
 
