@@ -167,7 +167,7 @@ $$
 
 例えば
 $$
-(f(x, y, z, t) dx \wedge dy + g(x, y, z, t) dz \wedge dt) = f(x, y, z, t) \{*(dx \wedge dy)\} + g(x, y, z, t) \{*(dz \wedge dt)\}.
+(f(x, y, z, t) dx \wedge dy + g(x, y, z, t) dz \wedge dt) = f(x, y, z, t) \{*(dx \wedge dy)\} + g(x, y, z, t) \{*(dz \wedge dt)\}
 $$
 
 といった具合である。
@@ -176,22 +176,69 @@ $$
 \subsection{解答}
 (1) $dF$ を計算する。
 \begin{align}
-    dF &= d(E_x dx \wedge dt) + d(E_y dy \wedge dt) + d(E_z dz \wedge dt) \\
+    dF &= d(E_x dx \wedge dt) + d(E_y dy \wedge dt) + d(E_z dz \wedge dt) \notag\\
     & \ \ + d(B_x dy \wedge dz) + d(B_y dz \wedge dx) + d(B_z dx \wedge dy) \\
     &= \left(\pdv{E_x}{y} dy + \pdv{E_x}{z} dz \right) \wedge dx \wedge dt 
-     + \left(\pdv{E_y}{x} dx + \pdv{E_y}{z} dz \right) \wedge dy \wedge dt \\
+     + \left(\pdv{E_y}{x} dx + \pdv{E_y}{z} dz \right) \wedge dy \wedge dt \notag\\
     & \ \ + \left(\pdv{E_z}{x} dx + \pdv{E_z}{y} dy\right) \wedge dz \wedge dt 
-    + \left(\pdv{B_x}{x} dx + \pdv{B_x}{t} dt\right) \wedge dy \wedge dz \\
-    & \ \ + \left(\pdv{B_y}{x} dx  + \pdv{B_y}{t} dt \right) \wedge dz \wedge dx 
+    + \left(\pdv{B_x}{x} dx + \pdv{B_x}{t} dt\right) \wedge dy \wedge dz \notag\\
+    & \ \ + \left(\pdv{B_y}{y} dy  + \pdv{B_y}{t} dt \right) \wedge dz \wedge dx 
      + \left( \pdv{B_z}{z} dz + \pdv{B_z}{t} dt\right) \wedge dx \wedge dy\\
-    &=\left(\pdv{B_z}{t}-\pdv{E_x}{y}+\pdv{E_y}{x}\right) dt\wedge dx\wedge dy+\left(\pdv{B_y}{t}+\pdv{E_x}{z}-\pdv{E_z}{x}\right) dt\wedge dz \wedge dx +\left(\pdv{E_y}{z}-\pdv{E_z}{y}\right) dz
+    &=\left(\pdv{B_z}{t}-\pdv{E_x}{y}+\pdv{E_y}{x}\right) dt\wedge dx\wedge dy+\left(\pdv{B_y}{t}+\pdv{E_x}{z}-\pdv{E_z}{x}\right) dt\wedge dz \wedge dx \notag\\
+    &\ \ +\left(\pdv{B_x}{t}-\pdv{E_y}{z}+\pdv{E_z}{y}\right)dt\wedge dy\wedge dz+\qty(\pdv{B_x}{x}+\pdv{B_y}{y}+\pdv{B_z}{z})dx\wedge dy\wedge dz
 \end{align}
-
-
-
-
-
-\section{問題11}
+dF=0 から次の式が出てくる。
+\begin{align}
+    \pdv{B_z}{t}-\pdv{E_x}{y}+\pdv{E_y}{x} &= 0 \label{34}\\
+    \pdv{B_y}{t}+\pdv{E_x}{z}-\pdv{E_z}{x} &= 0 \label{35}\\
+    \pdv{B_x}{t}-\pdv{E_y}{z}+\pdv{E_z}{y} &= 0 \label{36}\\
+    \pdv{B_x}{x}+\pdv{B_y}{y}+\pdv{B_z}{z} &= 0\label{37}
+\end{align}
+(\ref{34})(\ref{35})(\ref{36})(\ref{37})式より次のマクスウェル方程式が得られる。
+\begin{align}
+    \nabla \times \mathbf{E} &= -\pdv{\mathbf{B}}{t} \\
+    \nabla \cdot \mathbf{B} &= 0
+\end{align}
+\\
+\\
+(2) $*F$ を計算する。
+定義に従って計算する。
+\begin{align}
+    *F &= *(E_x dx \wedge dt) + *(E_y dy \wedge dt) + *(E_z dz \wedge dt) \notag\\
+    & \ \ + *(B_x dy \wedge dz) + *(B_y dz \wedge dx) + *(B_z dx \wedge dy) \\
+    &= E_x (dy \wedge dz) + E_y (dz \wedge dx) + E_z (dx \wedge dy) \notag\\
+    & \ \ - B_x (dx \wedge dt) - B_y (dy \wedge dt) - B_z (dz \wedge dt)
+\end{align}
+これの外微分を計算する。
+\begin{align}
+    d(*F)=& d(E_x dy \wedge dz) + d(E_y dz \wedge dx) + d(E_z dx \wedge dy) \notag\\
+    & - d(B_x dx \wedge dt) - d(B_y dy \wedge dt) - d(B_z dz \wedge dt) \\
+    =& \left(\pdv{E_x}{x} dx + \pdv{E_x}{t} dt\right) \wedge dy \wedge dz 
+     + \left(\pdv{E_y}{y} dy + \pdv{E_y}{t} dt\right) \wedge dz \wedge dx \notag\\
+    & + \left(\pdv{E_z}{z} dz + \pdv{E_z}{t} dt\right) \wedge dx \wedge dy 
+    - \left(\pdv{B_x}{y} dy + \pdv{B_x}{z} dz\right) \wedge dx \wedge dt \notag\\
+    & - \left(\pdv{B_y}{z} dz + \pdv{B_y}{x} dx\right) \wedge dy \wedge dt 
+     - \left( \pdv{B_z}{x} dx + \pdv{B_z}{y} dy\right) \wedge dz \wedge dt
+\end{align}
+それぞれの項を整理すると、
+\begin{align}
+    d(*F)=&\qty(\pdv{E_x}{x}+\pdv{E_y}{y}+\pdv{E_z}{z}) dx \wedge dy \wedge dz \notag\\
+    & +\left(\pdv{E_z}{t}+\pdv{B_x}{y}-\pdv{B_y}{x}\right) dt \wedge dx \wedge dy \notag\\
+    & +\left(\pdv{E_x}{t}+\pdv{B_y}{z}-\pdv{B_z}{y}\right) dt \wedge dy \wedge dz \notag\\
+    & +\left(\pdv{E_y}{t}+\pdv{B_z}{x}-\pdv{B_x}{z}\right) dt \wedge dz \wedge dx 
+\end{align}
+d(*F)=0 から次の式が出てくる。
+\begin{align}
+    \pdv{E_x}{x}+\pdv{E_y}{y}+\pdv{E_z}{z} &= 0 \label{52}\\
+    \pdv{E_z}{t}+\pdv{B_x}{y}-\pdv{B_y}{x} &= 0 \label{53}\\
+    \pdv{E_x}{t}+\pdv{B_y}{z}-\pdv{B_z}{y} &= 0 \label{54}\\
+    \pdv{E_y}{t}+\pdv{B_z}{x}-\pdv{B_x}{z} &= 0 \label{55}
+\end{align}
+(\ref{52})(\ref{53})(\ref{54})(\ref{55})式より次のソース項のない場合のマクスウェル方程式が得られる。
+\begin{align}
+    \nabla \times \mathbf{B} &= \pdv{\mathbf{E}}{t} \\
+    \nabla \cdot \mathbf{E} &= 0
+\end{align}
 
 問 11. Stokes の定理を使って
 \[
@@ -224,10 +271,10 @@ Stokes の定理を使うために、 まず適切な 2 次微分形式を考え
 \begin{align}
     \omega &= x dy \wedge dz + y dz \wedge dx + z dx \wedge dy \\
     &= \sin\theta \cos \phi d(\sin\theta \sin \phi) \wedge d(\cos \theta) 
-    + \sin\theta \sin \phi d(\cos \theta) \wedge d(\sin\theta \cos \phi) \\
+    + \sin\theta \sin \phi d(\cos \theta) \wedge d(\sin\theta \cos \phi) \notag\\
     & \ \ + \cos \theta d(\sin\theta \cos \phi) \wedge d(\sin\theta \sin \phi)\\
     &= \sin\theta \cos \phi \sin\theta \cos\phi \cdot - \sin \theta d\phi \wedge d\theta  
-     + \sin\theta \sin \phi \cdot-\sin \theta \cdot \sin\theta \cdot - \sin \phi d\theta \wedge d\phi  \\
+     + \sin\theta \sin \phi \cdot-\sin \theta \cdot \sin\theta \cdot - \sin \phi d\theta \wedge d\phi \notag \\
     & \ \ + \cos \theta \cos \theta \cos \phi \sin \theta\cdot\cos \phi d\theta \wedge d\phi
         + \cos \theta \sin \theta \cdot -\sin \phi \cos \theta \sin \phi d\phi \wedge d\theta\\
         &= \sin^3 \theta d\theta \wedge d \phi+\sin \theta \cos^2\theta\cos^2\phi d\theta\wedge d\phi +\sin \theta \sin^2\theta\cos^2\phi d\theta \wedge d\phi\\
